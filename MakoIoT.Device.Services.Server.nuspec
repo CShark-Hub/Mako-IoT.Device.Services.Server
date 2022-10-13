@@ -14,7 +14,7 @@
     <projectUrl>https://github.com/CShark-Hub/Mako-IoT.Device.Services.Server</projectUrl>
     <repository type="git" url="https://github.com/CShark-Hub/Mako-IoT.Device.Services.Server" />
     <copyright>Copyright (c) CSHARK Sp. z o. o.</copyright>
-    <description>Simple WebServer for .NET nanoFramework C# projects. Based on nanoFramework.WebServer by Laurent Ellerbach & contributors</description>
+    <description>Simple WebServer for .NET nanoFramework C# projects. Based on nanoFramework.WebServer by Laurent Ellerbach and contributors</description>
     <tags>nanoFramework C# csharp netmf netnf mako-iot webserver api rest server</tags>
     <dependencies>
 	    <dependency id="MakoIoT.Device.Services.DependencyInjection" version="1.0.3"  />
