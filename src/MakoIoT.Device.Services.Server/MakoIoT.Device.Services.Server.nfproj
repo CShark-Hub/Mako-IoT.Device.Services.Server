@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <NanoFrameworkProjectSystemPath>$(MSBuildExtensionsPath)\nanoFramework\v1.0\</NanoFrameworkProjectSystemPath>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>c1593594-dae2-4420-857e-fe0c93e16790</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>MakoIoT.Device.Services.Server</RootNamespace>
+    <AssemblyName>MakoIoT.Device.Services.Server</AssemblyName>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
+  <ItemGroup>
+    <Compile Include="Extensions\HttpListenerResponseExtension.cs" />
+    <Compile Include="WebServer\Authentication.cs" />
+    <Compile Include="WebServer\AuthenticationAttirbute.cs" />
+    <Compile Include="WebServer\AuthenticationType.cs" />
+    <Compile Include="WebServer\CaseSensitiveAttribute.cs" />
+    <Compile Include="WebServer\Header.cs" />
+    <Compile Include="WebServer\HttpProtocol.cs" />
+    <Compile Include="WebServer\MethodAttribute.cs" />
+    <Compile Include="WebServer\Route.cs" />
+    <Compile Include="Extensions\DeviceBuilderExtension.cs" />
+    <Compile Include="WebServer\MakoWebServer.cs" />
+    <Compile Include="Services\IServer.cs" />
+    <Compile Include="Services\Server.cs" />
+    <Compile Include="WebServerOptions.cs" />
+    <Compile Include="WebServer\RouteAttribute.cs" />
+    <Compile Include="WebServer\UrlParameter.cs" />
+    <Compile Include="WebServer\WebServerEventArgs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MakoIoT.Device.Services.DependencyInjection">
+      <HintPath>..\..\packages\MakoIoT.Device.Services.DependencyInjection.1.0.3.25020\lib\MakoIoT.Device.Services.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="MakoIoT.Device.Services.Interface">
+      <HintPath>..\..\packages\MakoIoT.Device.Services.Interface.1.0.3.26226\lib\MakoIoT.Device.Services.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="MakoIoT.Device.Utilities.String">
+      <HintPath>..\..\packages\MakoIoT.Device.Utilities.String.1.0.2.14320\lib\MakoIoT.Device.Utilities.String.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.12.0\lib\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Logging">
+      <HintPath>..\..\packages\nanoFramework.Logging.1.1.25\lib\nanoFramework.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Runtime.Events">
+      <HintPath>..\..\packages\nanoFramework.Runtime.Events.1.11.1\lib\nanoFramework.Runtime.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.System.Collections">
+      <HintPath>..\..\packages\nanoFramework.System.Collections.1.4.0\lib\nanoFramework.System.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.System.Text">
+      <HintPath>..\..\packages\nanoFramework.System.Text.1.2.7\lib\nanoFramework.System.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Streams">
+      <HintPath>..\..\packages\nanoFramework.System.IO.Streams.1.1.15\lib\System.IO.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net">
+      <HintPath>..\..\packages\nanoFramework.System.Net.1.10.24\lib\System.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\packages\nanoFramework.System.Net.Http.1.5.30\lib\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>..\..\packages\nanoFramework.System.Threading.1.1.8\lib\System.Threading.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
+  <ProjectExtensions>
+    <ProjectCapabilities>
+      <ProjectConfigurationsDeclaredAsItems />
+    </ProjectCapabilities>
+  </ProjectExtensions>
+  <Import Project="..\..\packages\Nerdbank.GitVersioning.3.5.113\build\Nerdbank.GitVersioning.targets" Condition="Exists('..\..\packages\Nerdbank.GitVersioning.3.5.113\build\Nerdbank.GitVersioning.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Nerdbank.GitVersioning.3.5.113\build\Nerdbank.GitVersioning.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Nerdbank.GitVersioning.3.5.113\build\Nerdbank.GitVersioning.targets'))" />
+  </Target>
+</Project>
