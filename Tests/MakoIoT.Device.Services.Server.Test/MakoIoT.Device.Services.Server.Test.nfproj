@@ -26,6 +26,7 @@
   <ItemGroup>
     <Compile Include="Extensions\DeviceBuilderExtensionTests.cs" />
     <Compile Include="Mocks\DeviceBuilderMock.cs" />
+    <Compile Include="Mocks\MockLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +38,9 @@
     </Reference>
     <Reference Include="nanoFramework.DependencyInjection">
       <HintPath>..\..\packages\nanoFramework.DependencyInjection.1.0.22\lib\nanoFramework.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Logging">
+      <HintPath>..\..\packages\nanoFramework.Logging.1.1.63\lib\nanoFramework.Logging.dll</HintPath>
     </Reference>
     <Reference Include="nanoFramework.TestFramework">
       <HintPath>..\..\packages\nanoFramework.TestFramework.2.1.59\lib\nanoFramework.TestFramework.dll</HintPath>
