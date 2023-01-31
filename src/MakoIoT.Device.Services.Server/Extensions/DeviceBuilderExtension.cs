@@ -1,6 +1,6 @@
-﻿using MakoIoT.Device.Services.DependencyInjection;
-using MakoIoT.Device.Services.Interface;
+﻿using MakoIoT.Device.Services.Interface;
 using MakoIoT.Device.Services.Server.Services;
+using nanoFramework.DependencyInjection;
 
 namespace MakoIoT.Device.Services.Server.Extensions
 {
@@ -9,10 +9,10 @@ namespace MakoIoT.Device.Services.Server.Extensions
     {
         public static IDeviceBuilder AddWebServer(this IDeviceBuilder builder, WebServerConfigurator configurator)
         {
-            DI.RegisterSingleton(typeof(IServer), typeof(Services.Server));
+            builder.Services.AddSingleton(typeof(IServer), typeof(Services.Server));
             var options = new WebServerOptions();
             configurator(options);
-            DI.RegisterInstance(typeof(WebServerOptions), options);
+            builder.Services.AddSingleton(typeof(WebServerOptions), options);
 
             return builder;
         }
