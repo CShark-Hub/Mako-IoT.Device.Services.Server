@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <NanoFrameworkProjectSystemPath>$(MSBuildExtensionsPath)\nanoFramework\v1.0\</NanoFrameworkProjectSystemPath>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props')" />
+  <ItemGroup>
+    <ProjectCapability Include="TestContainer" />
+  </ItemGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>150c10a8-0b82-4741-be30-480535615b62</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>MakoIoT.Device.Services.Server.Test</RootNamespace>
+    <AssemblyName>NFUnitTest</AssemblyName>
+    <IsCodedUITest>False</IsCodedUITest>
+    <IsTestProject>true</IsTestProject>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
+  <ItemGroup>
+    <Compile Include="Extensions\DeviceBuilderExtensionTests.cs" />
+    <Compile Include="Mocks\DeviceBuilderMock.cs" />
+    <Compile Include="Mocks\MockLogger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MakoIoT.Device.Services.Interface">
+      <HintPath>..\..\packages\MakoIoT.Device.Services.Interface.1.0.23.51280\lib\MakoIoT.Device.Services.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.14.2\lib\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.DependencyInjection">
+      <HintPath>..\..\packages\nanoFramework.DependencyInjection.1.0.22\lib\nanoFramework.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.Logging">
+      <HintPath>..\..\packages\nanoFramework.Logging.1.1.63\lib\nanoFramework.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.TestFramework">
+      <HintPath>..\..\packages\nanoFramework.TestFramework.2.1.59\lib\nanoFramework.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="nanoFramework.UnitTestLauncher">
+      <HintPath>..\..\packages\nanoFramework.TestFramework.2.1.59\lib\nanoFramework.UnitTestLauncher.exe</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="nano.runsettings" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\MakoIoT.Device.Services.Server\MakoIoT.Device.Services.Server.nfproj" />
+  </ItemGroup>
+  <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.CSharp.targets')" />
+  <!-- MANUAL UPDATE HERE -->
+  <Import Project="..\..\packages\nanoFramework.TestFramework.2.1.59\build\nanoFramework.TestFramework.targets" Condition="Exists('..\..\packages\nanoFramework.TestFramework.2.1.59\build\nanoFramework.TestFramework.targets')" />
+  <ProjectExtensions>
+    <ProjectCapabilities>
+      <ProjectConfigurationsDeclaredAsItems />
+    </ProjectCapabilities>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <WarningText>Update the Import path in nfproj to the correct nanoFramework.TestFramework NuGet package folder.</WarningText>
+    </PropertyGroup>
+    <Warning Condition="!Exists('..\..\packages\nanoFramework.TestFramework.2.1.59\build\nanoFramework.TestFramework.targets')" Text="'$(WarningText)'" />
+  </Target>
+</Project>
