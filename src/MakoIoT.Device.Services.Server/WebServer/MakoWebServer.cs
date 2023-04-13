@@ -11,9 +11,9 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
-using MakoIoT.Device.Services.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MakoIoT.Device.Utilities.String.Extensions;
+using nanoFramework.DependencyInjection;
 
 namespace MakoIoT.Device.Services.Server.WebServer
 {
@@ -47,6 +47,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
         private readonly HttpListener _listener;
 
         private readonly ILogger _logger;
+        private readonly IServiceProvider _serviceProvider;
 
         #endregion
 
@@ -166,7 +167,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
         /// </summary>
         /// <param name="port">Port number to listen on.</param>
         /// <param name="protocol"><see cref="HttpProtocol"/> version to use with web server.</param>
-        public MakoWebServer(int port, HttpProtocol protocol, ILogger logger) : this(port, protocol, null, logger)
+        public MakoWebServer(int port, HttpProtocol protocol, ILogger logger, IServiceProvider serviceProvider) : this(port, protocol, null, logger, serviceProvider)
         { }
 
         /// <summary>
@@ -175,10 +176,10 @@ namespace MakoIoT.Device.Services.Server.WebServer
         /// <param name="port">Port number to listen on.</param>
         /// <param name="protocol"><see cref="HttpProtocol"/> version to use with web server.</param>
         /// <param name="controllers">Controllers to use with this web server.</param>
-        public MakoWebServer(int port, HttpProtocol protocol, Type[] controllers, ILogger logger)
+        public MakoWebServer(int port, HttpProtocol protocol, Type[] controllers, ILogger logger, IServiceProvider serviceProvider)
         {
             _logger = logger;
-
+            _serviceProvider = serviceProvider;
             _callbackRoutes = new ArrayList();
 
             if (controllers != null)
@@ -594,7 +595,8 @@ namespace MakoIoT.Device.Services.Server.WebServer
         protected virtual void InvokeRoute(RouteCallback route, object[] callbackParams)
         {
             _logger.LogTrace($"Invoking {route.Callback.DeclaringType}.{route.Callback.Name}");
-            route.Callback.Invoke(DI.BuildUp(route.Callback.DeclaringType), callbackParams);
+            var dp = ActivatorUtilities.CreateInstance(_serviceProvider, route.Callback.DeclaringType);
+            route.Callback.Invoke(dp, callbackParams);
         }
 
         private string GetApiKeyFromHeaders(WebHeaderCollection headers)
