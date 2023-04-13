@@ -10,11 +10,13 @@ namespace MakoIoT.Device.Services.Server.Services
         private readonly ILogger _logger;
         private MakoWebServer _webServer;
         private readonly WebServerOptions _options;
+        private readonly IServiceProvider _serviceProvider;
 
-        public Server(ILogger logger, WebServerOptions options)
+        public Server(ILogger logger, WebServerOptions options, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _options = options;
+            _serviceProvider = serviceProvider;
         }
 
         /// <inheritdoc />
@@ -25,7 +27,7 @@ namespace MakoIoT.Device.Services.Server.Services
             if (_options.Controllers.Count > 0)
                 controllers = (Type[])_options.Controllers.ToArray(typeof(Type));
 
-            _webServer = new MakoWebServer(_options.Port, _options.Protocol, controllers, _logger);
+            _webServer = new MakoWebServer(_options.Port, _options.Protocol, controllers, _logger, _serviceProvider);
         }
 
         /// <inheritdoc />
