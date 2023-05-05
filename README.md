@@ -1,4 +1,8 @@
-# Project readme
+#  Mako-IoT.Device.Services.Server
+WebServer implementation based on [nanoFramework.WebServer](https://github.com/nanoframework/nanoFramework.WebServer) with additional features:
+- route parameters
+- optimized route resolving logic
+- improved API/MVC controller initialization
 
 ## How to manually sync fork
 - Clone repository and navigate into folder
