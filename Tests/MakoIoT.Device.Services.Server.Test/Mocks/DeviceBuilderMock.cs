@@ -18,6 +18,11 @@ namespace MakoIoT.Device.Services.Server.Test.Mocks
         public event DeviceStartingDelegate DeviceStarting;
         public event DeviceStoppedDelegate DeviceStopped;
 
+        public IDeviceBuilder ConfigureDI(ConfigureDIDelegate configureDiAction)
+        {
+            throw new NotImplementedException();
+        }
+
         public IDevice Build()
         {
             throw new NotImplementedException();
