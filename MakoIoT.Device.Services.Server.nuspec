@@ -26,7 +26,7 @@
       <dependency id="nanoFramework.System.Collections" version="1.5.18" />
       <dependency id="nanoFramework.System.IO.Streams" version="1.1.38" />
       <dependency id="nanoFramework.System.Net" version="1.10.52" />
-      <dependency id="nanoFramework.System.Net.Http" version="1.5.97" />
+      <dependency id="nanoFramework.System.Net.Http" version="1.5.99" />
       <dependency id="nanoFramework.System.Text" version="1.2.37" />
       <dependency id="nanoFramework.System.Threading" version="1.1.19" />
     </dependencies>
