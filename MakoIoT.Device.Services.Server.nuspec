@@ -17,7 +17,7 @@
     <description>Simple WebServer for .NET nanoFramework C# projects. Based on nanoFramework.WebServer by Laurent Ellerbach and contributors</description>
     <tags>nanoFramework C# csharp netmf netnf mako-iot webserver api rest server</tags>
     <dependencies>
-      <dependency id="MakoIoT.Device.Services.Interface" version="1.0.34.44535" />
+      <dependency id="MakoIoT.Device.Services.Interface" version="1.0.36.21434" />
       <dependency id="MakoIoT.Device.Utilities.String" version="1.0.31.17475" />
       <dependency id="nanoFramework.CoreLibrary" version="1.14.2" />
       <dependency id="nanoFramework.DependencyInjection" version="1.0.35" />
