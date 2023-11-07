@@ -1,8 +1,8 @@
 using MakoIoT.Device.Services.Server.Extensions;
 using MakoIoT.Device.Services.Server.Services;
 using MakoIoT.Device.Services.Server.Test.Mocks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using nanoFramework.DependencyInjection;
 using nanoFramework.TestFramework;
 
 namespace MakoIoT.Device.Services.Server.Test.Extensions
