@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading;
 using Microsoft.Extensions.Logging;
 using MakoIoT.Device.Utilities.String.Extensions;
-using nanoFramework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MakoIoT.Device.Services.Server.WebServer
 {

@@ -1,6 +1,6 @@
 ﻿using MakoIoT.Device.Services.Interface;
-using nanoFramework.DependencyInjection;
 using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MakoIoT.Device.Services.Server.Test.Mocks
 {
