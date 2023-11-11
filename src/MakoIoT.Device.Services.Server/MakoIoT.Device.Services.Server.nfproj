@@ -39,12 +39,11 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MakoIoT.Device.Services.Interface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\MakoIoT.Device.Services.Interface.1.0.39.3768\lib\MakoIoT.Device.Services.Interface.dll</HintPath>
+      <HintPath>..\..\packages\MakoIoT.Device.Services.Interface.1.0.40.57355\lib\MakoIoT.Device.Services.Interface.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MakoIoT.Device.Utilities.String, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\MakoIoT.Device.Utilities.String.1.0.31.17475\lib\MakoIoT.Device.Utilities.String.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MakoIoT.Device.Utilities.String">
+      <HintPath>..\..\packages\MakoIoT.Device.Utilities.String.1.0.33.52014\lib\MakoIoT.Device.Utilities.String.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib, Version=1.15.6.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
       <HintPath>..\..\packages\nanoFramework.CoreLibrary.1.15.5\lib\mscorlib.dll</HintPath>

@@ -12,8 +12,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using Microsoft.Extensions.Logging;
-using MakoIoT.Device.Utilities.String.Extensions;
 using Microsoft.Extensions.DependencyInjection;
+using MakoIoT.Device.Utilities.String.Extensions;
 
 namespace MakoIoT.Device.Services.Server.WebServer
 {
