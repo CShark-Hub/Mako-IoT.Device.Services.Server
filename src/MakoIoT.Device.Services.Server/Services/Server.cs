@@ -1,18 +1,18 @@
 ﻿using System;
+using MakoIoT.Device.Services.Interface;
 using MakoIoT.Device.Services.Server.WebServer;
-using Microsoft.Extensions.Logging;
 
 namespace MakoIoT.Device.Services.Server.Services
 {
     /// <inheritdoc />
     public class Server : IServer
     {
-        private readonly ILogger _logger;
+        private readonly ILog _logger;
         private MakoWebServer _webServer;
         private readonly WebServerOptions _options;
         private readonly IServiceProvider _serviceProvider;
 
-        public Server(ILogger logger, WebServerOptions options, IServiceProvider serviceProvider)
+        public Server(ILog logger, WebServerOptions options, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _options = options;
@@ -34,14 +34,14 @@ namespace MakoIoT.Device.Services.Server.Services
         public void Start()
         {
             bool success = _webServer.Start();
-            _logger.LogDebug($@"WebServer started: {success}");
+            _logger.Trace($@"WebServer started: {success}");
         }
 
         /// <inheritdoc />
         public void Stop()
         {
             _webServer.Stop();
-            _logger.LogDebug("WebServer stopped");
+            _logger.Trace("WebServer stopped");
         }
 
         public void Dispose()

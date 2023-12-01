@@ -11,9 +11,9 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using MakoIoT.Device.Utilities.String.Extensions;
+using MakoIoT.Device.Services.Interface;
 
 namespace MakoIoT.Device.Services.Server.WebServer
 {
@@ -46,7 +46,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
         private readonly ArrayList _callbackRoutes;
         private readonly HttpListener _listener;
 
-        private readonly ILogger _logger;
+        private readonly ILog _logger;
         private readonly IServiceProvider _serviceProvider;
 
         #endregion
@@ -167,7 +167,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
         /// </summary>
         /// <param name="port">Port number to listen on.</param>
         /// <param name="protocol"><see cref="HttpProtocol"/> version to use with web server.</param>
-        public MakoWebServer(int port, HttpProtocol protocol, ILogger logger, IServiceProvider serviceProvider) : this(port, protocol, null, logger, serviceProvider)
+        public MakoWebServer(int port, HttpProtocol protocol, ILog logger, IServiceProvider serviceProvider) : this(port, protocol, null, logger, serviceProvider)
         { }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
         /// <param name="port">Port number to listen on.</param>
         /// <param name="protocol"><see cref="HttpProtocol"/> version to use with web server.</param>
         /// <param name="controllers">Controllers to use with this web server.</param>
-        public MakoWebServer(int port, HttpProtocol protocol, Type[] controllers, ILogger logger, IServiceProvider serviceProvider)
+        public MakoWebServer(int port, HttpProtocol protocol, Type[] controllers, ILog logger, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _serviceProvider = serviceProvider;
@@ -245,7 +245,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
                                 }
 
                                 _callbackRoutes.Add(routeCallback);
-                                _logger.LogTrace($"{routeCallback.Callback.Name}, {routeCallback.Route.EscapeForInterpolation()}, {routeCallback.Method}, {routeCallback.CaseSensitive}");
+                                _logger.Trace($"{routeCallback.Callback.Name}, {routeCallback.Route.EscapeForInterpolation()}, {routeCallback.Method}, {routeCallback.CaseSensitive}");
                             }
                         }
                     }
@@ -257,7 +257,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
             Port = port;
             string prefix = Protocol == HttpProtocol.Http ? "http" : "https";
             _listener = new HttpListener(prefix, port);
-            _logger.LogDebug("Web server started on port " + port.ToString());
+            _logger.Trace("Web server started on port " + port.ToString());
         }
 
         private Authentication ExtractAuthentication(string strAuth)
@@ -369,7 +369,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
             {
                 _cancel = false;
                 _serverThread.Start();
-                _logger.LogDebug("Started server in thread " + _serverThread.GetHashCode().ToString());
+                _logger.Trace("Started server in thread " + _serverThread.GetHashCode().ToString());
             }
             catch
             {   //if there is a problem, maybe due to the fact we did not wait enough
@@ -397,7 +397,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
             Thread.Sleep(100);
             _serverThread.Abort();
             _serverThread = null;
-            _logger.LogDebug("Stoped server in thread ");
+            _logger.Trace("Stoped server in thread ");
         }
 
         /// <summary>
@@ -538,7 +538,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
 
                             context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                             context.Response.ContentLength64 = 0;
-                            _logger.LogTrace($"Response code: {context.Response.StatusCode}");
+                            _logger.Trace($"Response code: {context.Response.StatusCode}");
                             return;
                         }
 
@@ -546,7 +546,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
 
                         if (context.Response != null)
                         {
-                            _logger.LogTrace($"Response code: {context.Response.StatusCode}");
+                            _logger.Trace($"Response code: {context.Response.StatusCode}");
                             context.Response.Close();
                             context.Close();
                             break;
@@ -573,7 +573,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
                         }
                         else
                         {
-                            _logger.LogTrace($"Response code: {context.Response.StatusCode}");
+                            _logger.Trace($"Response code: {context.Response.StatusCode}");
                             context.Response.Close();
                             context.Close();
                         }
@@ -594,7 +594,7 @@ namespace MakoIoT.Device.Services.Server.WebServer
         /// <param name="callbackParams"></param>
         protected virtual void InvokeRoute(RouteCallback route, object[] callbackParams)
         {
-            _logger.LogTrace($"Invoking {route.Callback.DeclaringType}.{route.Callback.Name}");
+            _logger.Trace($"Invoking {route.Callback.DeclaringType}.{route.Callback.Name}");
             var dp = ActivatorUtilities.CreateInstance(_serviceProvider, route.Callback.DeclaringType);
             route.Callback.Invoke(dp, callbackParams);
         }
@@ -617,10 +617,10 @@ namespace MakoIoT.Device.Services.Server.WebServer
         private void ListInterfaces()
         {
             NetworkInterface[] ifaces = NetworkInterface.GetAllNetworkInterfaces();
-            _logger.LogDebug("Number of Interfaces: " + ifaces.Length.ToString());
+            _logger.Trace("Number of Interfaces: " + ifaces.Length.ToString());
             foreach (NetworkInterface iface in ifaces)
             {
-                _logger.LogDebug("IP:  " + iface.IPv4Address + "/" + iface.IPv4SubnetMask);
+                _logger.Trace("IP:  " + iface.IPv4Address + "/" + iface.IPv4SubnetMask);
             }
         }
 
