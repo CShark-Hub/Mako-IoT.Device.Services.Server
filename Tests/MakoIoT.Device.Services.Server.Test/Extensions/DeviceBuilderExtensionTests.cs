@@ -1,8 +1,8 @@
+using MakoIoT.Device.Services.Interface;
 using MakoIoT.Device.Services.Server.Extensions;
 using MakoIoT.Device.Services.Server.Services;
 using MakoIoT.Device.Services.Server.Test.Mocks;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using nanoFramework.TestFramework;
 
 namespace MakoIoT.Device.Services.Server.Test.Extensions
@@ -16,7 +16,7 @@ namespace MakoIoT.Device.Services.Server.Test.Extensions
             var protocol = WebServer.HttpProtocol.Https;
             var port = 322;
             var mockBuild = new DeviceBuilderMock();
-            mockBuild.Services.AddSingleton(typeof(ILogger), new MockLogger());
+            mockBuild.Services.AddSingleton(typeof(ILog), new MockLogger());
 
             DeviceBuilderExtension.AddWebServer(mockBuild, (c) => { c.Protocol = protocol; c.Port = port; });
 
