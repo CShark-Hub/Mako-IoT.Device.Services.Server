@@ -16,7 +16,6 @@
     <RootNamespace>MakoIoT.Device.Services.Server</RootNamespace>
     <AssemblyName>MakoIoT.Device.Services.Server</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <UserSecretsId>40c09c92-013b-49e4-86c9-0761b77422d2</UserSecretsId>
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
