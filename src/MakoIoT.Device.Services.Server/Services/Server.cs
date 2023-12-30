@@ -40,7 +40,7 @@ namespace MakoIoT.Device.Services.Server.Services
         /// <inheritdoc />
         public void Stop()
         {
-            _webServer.Stop();
+            _webServer?.Stop();
             _logger.Trace("WebServer stopped");
         }
 
