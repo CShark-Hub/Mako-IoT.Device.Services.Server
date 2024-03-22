@@ -30,7 +30,6 @@
     <Compile Include="WebServer\Route.cs" />
     <Compile Include="Extensions\DeviceBuilderExtension.cs" />
     <Compile Include="WebServer\MakoWebServer.cs" />
-    <Compile Include="Services\IServer.cs" />
     <Compile Include="Services\Server.cs" />
     <Compile Include="WebServerOptions.cs" />
     <Compile Include="WebServer\RouteAttribute.cs" />
@@ -38,9 +37,8 @@
     <Compile Include="WebServer\WebServerEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MakoIoT.Device.Services.Interface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\MakoIoT.Device.Services.Interface.1.0.45.4694\lib\MakoIoT.Device.Services.Interface.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MakoIoT.Device.Services.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MakoIoT.Device.Services.Interface.1.0.46.2905\lib\MakoIoT.Device.Services.Interface.dll</HintPath>
     </Reference>
     <Reference Include="MakoIoT.Device.Utilities.String">
       <HintPath>..\..\packages\MakoIoT.Device.Utilities.String.1.0.33.52014\lib\MakoIoT.Device.Utilities.String.dll</HintPath>

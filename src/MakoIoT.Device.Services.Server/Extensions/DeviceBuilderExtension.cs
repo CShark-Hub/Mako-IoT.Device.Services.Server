@@ -1,5 +1,4 @@
 ﻿using MakoIoT.Device.Services.Interface;
-using MakoIoT.Device.Services.Server.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MakoIoT.Device.Services.Server.Extensions

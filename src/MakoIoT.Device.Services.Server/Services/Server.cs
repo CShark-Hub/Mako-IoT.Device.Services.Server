@@ -5,7 +5,7 @@ using MakoIoT.Device.Services.Server.WebServer;
 namespace MakoIoT.Device.Services.Server.Services
 {
     /// <inheritdoc />
-    public class Server : IServer
+    internal sealed class Server : IServer
     {
         private readonly ILog _logger;
         private MakoWebServer _webServer;
@@ -33,7 +33,12 @@ namespace MakoIoT.Device.Services.Server.Services
         /// <inheritdoc />
         public void Start()
         {
-            bool success = _webServer.Start();
+            if (_webServer is null)
+            {
+                throw new Exception("Server is not initialized.");
+            }
+            
+            var success = _webServer.Start();
             _logger.Trace($@"WebServer started: {success}");
         }
 
@@ -46,8 +51,7 @@ namespace MakoIoT.Device.Services.Server.Services
 
         public void Dispose()
         {
-            if (_webServer != null)
-                _webServer.Dispose();
+            _webServer?.Dispose();
         }
     }
 }
