@@ -18,7 +18,7 @@
     <tags>nanoFramework C# csharp netmf netnf mako-iot webserver api rest server</tags>
     <dependencies>
       <dependency id="MakoIoT.Device.Services.Interface" version="1.0.50.35966" />
-      <dependency id="MakoIoT.Device.Utilities.String" version="1.0.38.1040" />
+      <dependency id="MakoIoT.Device.Utilities.String" version="1.0.39.56355" />
       <dependency id="nanoFramework.CoreLibrary" version="1.16.11" />
       <dependency id="nanoFramework.DependencyInjection" version="1.1.25" />
       <dependency id="nanoFramework.Runtime.Events" version="1.11.29" />
